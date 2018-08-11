@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
 import MarketPage from "./containers/marketPage";
+import Banner from "./components/banner";
 
 
 class Index extends Component {
