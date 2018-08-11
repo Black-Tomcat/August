@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Item, Image, Loader, Card} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Item, Image, Loader, Card } from 'semantic-ui-react';
 
 
 export default class ProjectItem extends Component {
@@ -11,8 +11,8 @@ export default class ProjectItem extends Component {
         this.props.transitionPage("project", this.props.project._id);
     };
 
-    render(){
-        const {img, name, description} = this.props.project;
+    render() {
+        const { img, name, description, tags } = this.props.project;
 
         return (
             <Item className="objectItems">
@@ -20,6 +20,7 @@ export default class ProjectItem extends Component {
                 <Item.Content>
                     <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>
                     <Item.Description>{description.substring(0, 30)}</Item.Description>
+                    <Item.Extra >{"Tags: " + tags.join(", ")}</Item.Extra>
                 </Item.Content>
             </Item>
         )
