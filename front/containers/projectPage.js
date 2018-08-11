@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
+import Header from '../components/header';
 import Description from '../components/description';
 
 
@@ -20,8 +22,8 @@ export default class ProjectPage extends Component {
         return (
             <div>
                 <Header
-                    name={name}
-
+                    heading={name}
+                    headingTags={tags}
                 />
                 <Description
                     text={description}

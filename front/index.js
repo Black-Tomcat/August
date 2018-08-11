@@ -6,6 +6,7 @@ import LoginPage from './containers/loginPage';
 import userPage from './containers/userPage';
 
 import './css/index.sass';
+import 'semantic-ui-css/semantic.min.css';
 
 
 class Index extends Component {
