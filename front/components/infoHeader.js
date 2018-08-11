@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import {Image, Header, Grid} from "semantic-ui-react";
 
 export default class InfoHeader extends Component{
+
     render() {
+        const {heading, headingTags} = this.props;
+
         return (
             <div>
                 <Grid>
@@ -11,10 +14,10 @@ export default class InfoHeader extends Component{
                     </Grid.Column>
                     <Grid.Column width={6}>
                         <Header as='h1'>
-                            {this.props.heading}
+                            {heading}
                         </Header>
                         <list>
-                            <ul>{this.props.headingTags}</ul>
+                            <ul>{headingTags}</ul>
                         </list>
                     </Grid.Column>
                 </Grid>
