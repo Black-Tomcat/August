@@ -9,11 +9,13 @@ import Bottom from "../components/bottom";
 export default class UserPage extends Component {
 
     render() {
+        const {skills, degree, lookingFor, projects, mentoring, name, bio} = this.props.user;
+
         if (this.props.user === null) {
             return <Loader/>
         }
 
-        let headingTags = [this.props.user.degree, this.props.user.lookingFor];
+        let headingTags = [degree, lookingFor];
 
         let hTagComponents = headingTags.map((tagText, i) => {
             return (
@@ -23,30 +25,30 @@ export default class UserPage extends Component {
 
         const skillList =
             (<ul>
-                {this.props.user.skills.map((skill) => {
+                {skills.map((skill) => {
                     return <li>{skill}</li> })}
             </ul>);
 
         const projectList =
             (<ul>
-                {this.props.user.projects.map((projectId) => {
+                {projects.map((projectId) => {
                     return <li>{projectId}</li> })}
             </ul>);
 
         const mentoringList =
             (<ul>
-                {this.props.user.mentoring.map((student) => {
+                {mentoring.map((student) => {
                     return <li>{student}</li> })}
             </ul>);
 
         return (
             <div>
                 <InfoHeader
-                    heading={this.props.user.name}
+                    heading={name}
                     headingTags={hTagComponents}
                 />
                 <Description
-                    text={this.props.user.bio}
+                    text={bio}
                 />
                 <Bottom
                     heading1={"Skills"}
