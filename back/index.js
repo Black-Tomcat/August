@@ -23,15 +23,20 @@ app.post("/users", (req, res) => {
 
 app.get("/users/:userId", (req, res) => {
   const id = req.params.userId;
-  console.log(id);
-  client.connect(url, (err, db) => {
-    const dbo = db.db("august");
-    dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
-      if(err) throw err;
-      res.send(JSON.stringify(dbres));
-      db.close();      
+  if(id.length != 24){
+    res.statusCode = 400;
+    res.send("Nice try, give me a proper id");
+  }
+  else {
+    client.connect(url, (err, db) => {
+      const dbo = db.db("august");
+      dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
+        if(err) throw err;
+        res.send(JSON.stringify(dbres));
+        db.close();      
+      });
     });
-  });
+  }
 });
 
 app.get("/users", (req, res) => {
@@ -59,14 +64,20 @@ app.post("/projects", (req, res) => {
 
 app.get("/projects/:projectId", (req, res) => {
   const id = req.params.projectId;
-  client.connect(url, (err, db) => {
-    const dbo = db.db("august");
-    dbo.collection("projects").findOne({"_id": ObjectId(id)}, (err, dbres) => {
-      if(err) throw err;
-      res.send(JSON.stringify(dbres));
-      db.close();      
+  if(id.length != 24){
+    res.statusCode = 400;
+    res.send("Nice try, give me a proper id");
+  }
+  else{
+    client.connect(url, (err, db) => {
+      const dbo = db.db("august");
+      dbo.collection("projects").findOne({"_id": ObjectId(id)}, (err, dbres) => {
+        if(err) throw err;
+        res.send(JSON.stringify(dbres));
+        db.close();      
+      });
     });
-  });
+  }
 });
 
 app.get("/projects", (req, res) => {
