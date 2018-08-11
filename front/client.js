@@ -35,4 +35,10 @@ export default class BackendClient{
             callback(res);
         });
     }
+
+    getUserByName(name, callback){
+        fetch('https://' + url + ':3000/users?name=' + name).then((res) => res.json()).then((res) => {
+            callback(res);
+        });
+    }
 }
