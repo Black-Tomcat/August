@@ -33,7 +33,8 @@ class Index extends Component {
         console.log(userObject);
         this.setState({
             loggedIn: true,
-            pageInfo: userObject
+            pageInfo: userObject,
+            user: userObject.name
         });
     };
 
