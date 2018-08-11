@@ -28,8 +28,8 @@ export default class LoginPage extends Component {
         else{
             return (
                 <div className="passwordForm">
-                    <Grid>
-                    <Grid.Row centered columns={1}>
+                    <Grid centered>
+                    <Grid.Row columns={1}>
                         <Grid.Column width={3}>
                             <Input type='text' placeholder="Username" onChange={this.usernameChange} />
                             <br />

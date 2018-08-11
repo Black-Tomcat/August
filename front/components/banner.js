@@ -7,7 +7,7 @@ export default class Banner extends Component {
     render() {
         return (
             <div>
-                <Image src='https://image.ibb.co/knjQfp/LOGO.png' size='small' floated='left'/>
+                <Image src='https://image.ibb.co/knjQfp/LOGO.png' size='small' centered/>
                 <Header as='h1' textAlign='center'>August</Header>
             </div>
         )
