@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {Loader, Button} from 'semantic-ui-react';
+import {Loader, Grid, Container, Button} from 'semantic-ui-react';
 
 import InfoHeader from '../components/infoHeader.js'
 import Description from "../components/description";
@@ -29,12 +29,13 @@ export default class UserPage extends Component {
             });
         });
     }
-    componentWillReceiveProps(){
+
+    componentDidUpdate(){
         this.componentDidMount();
     }
 
     addMentor = () => {
-        let client = new Client();                
+        let client = new Client();
         client.addMentor(this.props.meID, this.props.userID, (id) =>{
             this.setState({
                 isYourMentor: true
@@ -77,18 +78,25 @@ export default class UserPage extends Component {
             </ul>);
 
         return (
-            <div>
+            <Grid columns={12}>
+                <Grid.Row className="WhiteyClass margins">
                 <InfoHeader
                     heading={name}
                     profile={profile}
                     headingTags={hTagComponents}
                 />
+                </Grid.Row>
+
+                <Grid.Row className="WhiteyClass margins">
                 <Description
                     text={bio}
                 />
                 {(this.props.userID !== this.props.meID) && !this.state.isYourMentor && <Button onClick={this.addMentor}>Add as Mentor</Button>}
 
                 {(this.props.userID !== this.props.meID) && this.state.isYourMentor && <Button disabled onClick={this.addMentor}>Is your mentor!</Button>}
+                </Grid.Row>
+
+                <Grid.Row className="WhiteyClass margins">
                 <Bottom
                     heading1={"Skills"}
                     heading2={"Projects"}
@@ -98,7 +106,8 @@ export default class UserPage extends Component {
                     content2={projectList}
                     content3={mentoringList}
                 />
-            </div>
+                </Grid.Row>
+            </Grid>
         )
     }
 }

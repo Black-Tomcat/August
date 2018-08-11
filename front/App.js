@@ -39,8 +39,8 @@ export default class App extends Component {
         this.setState({
             currentlyViewing: nextPage,
             objectID: payload
-        })
-    }
+        });
+    };
 
     render() {
         const {currentlyViewing, objectID} = this.state;
