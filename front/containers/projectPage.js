@@ -23,6 +23,10 @@ export default class ProjectPage extends Component {
         }
     }
 
+    componentWillReceiveProps(){
+        componentDidMount();
+    }
+
     componentDidMount() {
         const backendClient = new BackendClient();
 
