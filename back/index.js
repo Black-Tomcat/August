@@ -54,6 +54,38 @@ app.get("/users/:userId", (req, res) => {
   }
 });
 
+app.post("/users/:userId/mentors", (req, res) => {
+  const body = req.body;
+  const id = req.params.userId;
+  if(id.length != 24){
+    res.statusCode = 400;
+    res.send("Nice try, give me a proper id");
+  }
+  else {
+    client.connect(url, (err, db) => {
+      const dbo = db.db("august");
+      dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
+        if(err) throw err;
+        initToArray(dbres, ["mentors", "projects", "mentoring", "initiated", "skills"]); 
+        dbres.mentors.push(body.id);
+        dbo.collection("users").update({"_id": ObjectId(id)}, dbres, (err, dbres) => {
+          if(err) throw err;
+          dbo.collection("users").findOne({"_id": ObjectId(body.id)}, (err, dbres) => {
+            if(err) throw err;
+            initToArray(dbres, ["mentors", "projects", "mentoring", "initiated", "skills"]); 
+            dbres.mentoring.push(id);
+            dbo.collection("users").update({"_id": ObjectId(body.id)}, dbres, (err, dbres) => {
+              if(err) throw err;
+              res.send(req.body.id);
+              db.close(); 
+            });
+          });
+        });
+      });
+    });
+  }
+});
+
 app.get("/users", (req, res) => {
   const query = req.query;
   client.connect(url, (err, db) => {
