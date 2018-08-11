@@ -15,7 +15,7 @@ export default class ProjectItem extends Component {
         const {img, name, description} = this.props.project;
 
         return (
-            <Item as={Card}>
+            <Item className="objectItems">
                 {img !== null && img !== undefined && <Item.Image src={img} />}
                 <Item.Content>
                     <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>

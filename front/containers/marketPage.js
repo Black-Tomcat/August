@@ -39,12 +39,12 @@ export default class MarketPage extends Component {
         return (
             <Grid columns={2}>
                 <Grid.Column>
-                    <Item.Group>
+                    <Item.Group relaxed>
                         {userArray}
                     </Item.Group>
                 </Grid.Column>
                 <Grid.Column>
-                    <Item.Group>
+                    <Item.Group relaxed>
                         {projectArray}
                     </Item.Group>
                 </Grid.Column>

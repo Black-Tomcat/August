@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Item, Image, Loader} from 'semantic-ui-react';
-import Client from '../client'
 
 
 export default class UserItem extends Component{
@@ -17,7 +16,7 @@ export default class UserItem extends Component{
         const {name, degree, profile} = this.props.user;
 
         return (
-            <Item>
+            <Item className="objectItems">
                 <Item.Image src={profile}/>
                 <Item.Content>
                     <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>
