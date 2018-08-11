@@ -12,7 +12,6 @@ import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
 import MarketPage from "./containers/marketPage";
-import Banner from "./components/banner";
 
 
 class Index extends Component {
@@ -34,6 +33,7 @@ class Index extends Component {
         console.log(userObject);
         this.setState({
             loggedIn: true,
+            viewing: "user",
             pageInfo: userObject
         });
     };
@@ -48,15 +48,18 @@ class Index extends Component {
         } else if (name === "Marketplace") {
             backendClient.searchProjects("", projects => {
                 this.setState(prevState => ({
-                    all: [...prevState.all, ...projects],
+                    projects: projects,
                     projectsLoaded: true
                 }))
             });
             backendClient.searchUsers("", users => {
                 this.setState(prevState => ({
-                    all: [...prevState.all, ...users],
+                    users: users,
                     usersLoaded: true
                 }))
+            });
+            this.setState({
+                viewing: "marketplace"
             })
         }
     };
