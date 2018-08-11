@@ -8,7 +8,7 @@ export default class BackendClient{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)}).then((res) => res.text()).then((res) => {
-            callback(res.status, res);
+            callback(res);
         });
     }
 
@@ -20,19 +20,19 @@ export default class BackendClient{
             },
             body: JSON.stringify(project)
         }).then((res) => res.text()).then((res) => {
-            callback(res.status, res);
+            callback(res);
         });
     }
 
     getUser(id, callback) {
         fetch('http://' + url + ':3000/users/' + id).then((res) => res.json()).then((res) => {
-            callback(res.status, res);
+            callback(res);
         });
     }
 
     getProject(id, callback) {
         fetch('http://' +url + ':3000/projects/' + id).then((res) => res.json()).then((res) => {
-            callback(res.status, res);
+            callback(res);
         });
     }
 }
