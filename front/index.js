@@ -44,8 +44,8 @@ class Index extends Component {
             <div>
                 {loggedIn && <NavBar/>}
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
-                {loggedIn && viewing === "user" && <UserPage pageInfo={pageInfo}/>}
-                {loggedIn && viewing === "project" && <ProjectPage pageInfo={pageInfo}/>}
+                {loggedIn && viewing === "user" && <UserPage userID={"5b6e84f3d9accd808af40073"}/>}
+                {loggedIn && viewing === "project" && <ProjectPage projectID={"5b6e85f4964e7c3d17455680"}/>}
             </div>
         )
     }

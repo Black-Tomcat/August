@@ -22,6 +22,10 @@ export default class UserPage extends Component {
             degree: null,
         };
 
+
+    }
+
+    componentDidMount() {
         let userInfo = this.getUserInfo(this.props.userId);
         this.setState(
             userInfo,
@@ -30,7 +34,7 @@ export default class UserPage extends Component {
 
     getUserInfo = (userId) => {
         let client = new Client();
-        client.getUser(userId, (statusCode, userInfo) => {
+        return client.getUser(userId, (statusCode, userInfo) => {
             return userInfo;
         });
     };
