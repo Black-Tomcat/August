@@ -16,9 +16,9 @@ export default class InfoHeader extends Component{
                         <Header as='h1'>
                             {heading}
                         </Header>
-                        <list>
-                            <ul>{headingTags}</ul>
-                        </list>
+                        <ul>
+                            {headingTags}
+                        </ul>
                     </Grid.Column>
                 </Grid>
             </div>

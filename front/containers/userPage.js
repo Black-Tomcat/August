@@ -26,7 +26,7 @@ export default class UserPage extends Component {
     }
 
     componentDidMount() {
-        let userInfo = this.getUserInfo(this.props.userId);
+        let userInfo = this.getUserInfo(this.props.userID);
         this.setState(
             userInfo,
         );

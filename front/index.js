@@ -9,6 +9,7 @@ import ProjectPage from './containers/projectPage';
 import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
+import BackendClient from "./client";
 
 
 class Index extends Component {
@@ -17,18 +18,25 @@ class Index extends Component {
         this.state = {
             loggedIn: false,
             viewing: "user",
-            pageInfo: "Sam",
+            pageInfo: "5b6e84f3d9accd808af40073",
 
             //
             users: {}
         }
     }
 
-    updateViewing(param) {
-        this.setState({
-            viewing: param
-        })
-    }
+    updateViewing = (page, pageInfo) => {
+        if (page === "user" && pageInfo === "me") {
+            const backendClient = new BackendClient();
+
+            backendClient.getUserByName(pageInfo => {
+                this.setState({
+                    viewing: page,
+                    pageInfo: pageInfo
+                })
+            });
+        }
+    };
 
 
     onLogin = (username) => {
@@ -40,11 +48,15 @@ class Index extends Component {
 
     render() {
         const {loggedIn, viewing, pageInfo} = this.state;
+        console.log(pageInfo);
+
         return (
             <div>
-                {loggedIn && <NavBar/>}
+                {loggedIn && <NavBar
+                    updatePage={this.updateViewing}
+                />}
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
-                {loggedIn && viewing === "user" && <UserPage userId={"5b6e84f3d9accd808af40073"}/>}
+                {loggedIn && viewing === "user" && <UserPage userID={pageInfo}/>}
                 {loggedIn && viewing === "project" && <ProjectPage projectID={"5b6e85f4964e7c3d17455680"}/>}
             </div>
         )
