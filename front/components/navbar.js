@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Menu } from 'semantic-ui-react'
+import { Menu, Input } from 'semantic-ui-react'
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -25,9 +25,10 @@ export default class NavBar extends Component {
                  Marketplace
              </Menu.Item>
              <Menu.Item
+
                  name = "Search"
              >
-                 Search
+                 <Input icon='search' placeholder = 'Search...'/>
              </Menu.Item>
 
          </Menu>
