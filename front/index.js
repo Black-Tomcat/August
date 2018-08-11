@@ -52,5 +52,5 @@ class Index extends Component {
 
 ReactDOM.render(
     <Index />,
-    document.body
+    document.getElementById("react-entry")
 );
