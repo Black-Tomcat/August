@@ -149,8 +149,14 @@ app.post("/projects/:projectId/members", (req, res) => {
           dbres.members = [req.body.id];
         }
         dbo.collection("projects").update({"_id": ObjectId(id)}, dbres, (err, dbres) => {
-          res.send(req.body.id);
-          db.close(); 
+          dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, user) => {
+            user.projects.push(id);
+            
+            dbo.collection("users").update({"_id": ObjectId(id)}, user, (err, user) => {
+              res.send(req.body.id);
+              db.close(); 
+            });
+          });
         });
       });
     });
