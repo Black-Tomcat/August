@@ -46,7 +46,7 @@ app.get("/users/:userId", (req, res) => {
       const dbo = db.db("august");
       dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
         if(err) throw err;
-        initToArray(dbres, ["mentors", "projects", "mentoring", "initiated"]); 
+        initToArray(dbres, ["mentors", "projects", "mentoring", "initiated", "skills"]); 
         res.send(JSON.stringify(dbres));
         db.close();      
       });
@@ -60,7 +60,10 @@ app.get("/users", (req, res) => {
     const dbo = db.db("august");
     dbo.collection("users").find(query).toArray((err, result) => {
       if(err) throw err;
-      res.send(JSON.stringify(result));
+      res.send(JSON.stringify(result.map((item) =>{
+        initToArray(item, ["mentors", "projects", "mentoring", "initiated", "skills"]); 
+        return item;
+      })));
       db.close();
     });
   });
@@ -127,7 +130,10 @@ app.get("/projects", (req, res) => {
     const dbo = db.db("august");
     dbo.collection("projects").find(query).toArray((err, result) => {
       if(err) throw err;
-      res.send(JSON.stringify(result));
+      res.send(JSON.stringify(result.map((item) => {
+        initToArray(item, ["members", "progress", "tags"]);
+        return item;
+      })));
       db.close();
     });
   });
