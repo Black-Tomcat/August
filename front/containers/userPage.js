@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+
 import Header from '../components/header.js'
+import Description from "../components/description";
+import Bottom from "../components/bottom";
 
 export default class UserPage extends Component {
     render() {
@@ -16,6 +19,18 @@ export default class UserPage extends Component {
                 <Header
                     heading="Name"
                     headingTags={hTagComponents}
+                />
+                <Description
+                    text={}
+                />
+                <Bottom
+                    heading1={}
+                    heading2={}
+                    heading3={}
+
+                    content1={}
+                    content2={}
+                    content3={}
                 />
             </div>
         )
