@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import {Loader} from 'semantic-ui-react';
+
 import InfoHeader from '../components/infoHeader.js'
 import Description from "../components/description";
 import Bottom from "../components/bottom";
@@ -7,6 +9,10 @@ import Bottom from "../components/bottom";
 export default class UserPage extends Component {
 
     render() {
+        if (this.props.user === null) {
+            return <Loader/>
+        }
+
         let headingTags = [this.props.user.degree, this.props.user.lookingFor];
 
         let hTagComponents = headingTags.map((tagText, i) => {
