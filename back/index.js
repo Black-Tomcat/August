@@ -27,6 +27,14 @@ app.post("/users", (req, res) => {
   });
 });
 
+function initToArray(object, keys){
+  keys.forEach((item) => {
+    if(!object[item]){
+      object[item] = [];
+    }
+  });
+}
+
 app.get("/users/:userId", (req, res) => {
   const id = req.params.userId;
   if(id.length != 24){
@@ -38,6 +46,7 @@ app.get("/users/:userId", (req, res) => {
       const dbo = db.db("august");
       dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
         if(err) throw err;
+        initToArray(dbres, ["mentors", "projects", "mentoring", "initiated"]); 
         res.send(JSON.stringify(dbres));
         db.close();      
       });
@@ -79,6 +88,7 @@ app.get("/projects/:projectId", (req, res) => {
       const dbo = db.db("august");
       dbo.collection("projects").findOne({"_id": ObjectId(id)}, (err, dbres) => {
         if(err) throw err;
+        initToArray(dbres, ["members", "progress", "tags"]);
         res.send(JSON.stringify(dbres));
         db.close();      
       });
