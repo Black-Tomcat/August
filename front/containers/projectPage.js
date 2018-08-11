@@ -27,11 +27,24 @@ export default class ProjectPage extends Component {
         const backendClient = new BackendClient();
 
         backendClient.getProject(this.props.projectID, projectObject => {
-            this.setState({
-                loaded: true,
-                project: projectObject
-            })
+            let memberNamesStr = "";
+            let count = 0;
+            for (let member of projectObject.members) {
+                backendClient.getUser(member, (user) => {
+                    memberNamesStr = memberNamesStr.concat(user.name + " ")
+                    count++
+                    if (count == projectObject.members.length) {
+                        this.setState({
+                            loaded: true,
+                            project: projectObject,
+                            memberNames: memberNamesStr
+                        })
+                    }
+                })
+            }
         })
+
+
     }
 
     render() {
@@ -39,8 +52,9 @@ export default class ProjectPage extends Component {
             return <Loader />
         }
         else {
-            const { loaded } = this.state;
+            const { loaded, memberNames } = this.state;
             const { name, client, description, pay, members, progress, tags, img } = this.state.project;
+
             return (
                 <div>
                     {this.state.loaded &&
@@ -58,7 +72,7 @@ export default class ProjectPage extends Component {
                                 heading2={"Skills"}
                                 heading3={"Progress"}
 
-                                content1={"dank"}
+                                content1={memberNames}
                                 content2={tags}
                                 content3={progress}
                             />
