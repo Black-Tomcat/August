@@ -41,6 +41,6 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-    <UserPage />,
+    <Index />,
     document.body
 );
