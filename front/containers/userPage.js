@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import BackendClient from '../client.js'
 import PropTypes from 'prop-types';
 
 import {Loader, Grid, Container, Button} from 'semantic-ui-react';
@@ -15,7 +16,9 @@ export default class UserPage extends Component {
 
         this.state = {
             loaded: false,
-            user: null
+            user: null,
+            projectItems: "",
+            mentorItems: [],
         }
     }
 
@@ -35,6 +38,21 @@ export default class UserPage extends Component {
                             loaded: true,
                             user: userObject,
                             memberNames: memberNamesStr
+                        })
+                    }
+                })
+            }
+
+            let projectNamesStr = "";
+            count = 0;
+            for (let projectId of userObject.projects) {
+                backendClient.getProject(projectId, (project) => {
+                    projectNamesStr = projectNamesStr.concat(project.name + ", ");
+                    count++;
+                    if (count === userObject.projects.length) {
+
+                        this.setState({
+                            projectItems: projectNamesStr
                         })
                     }
                 })
@@ -62,7 +80,7 @@ export default class UserPage extends Component {
                 isYourMentor: true
             });
         });
-    }
+    };
 
     render() {
 
@@ -81,19 +99,7 @@ export default class UserPage extends Component {
             )
         });
 
-        const skillList = skills.map(el => <p style={{marginBottom: "0"}}>{el}</p>)
-
-        const projectList =
-            (<ul>
-                {projects.map((projectId) => {
-                    return <li>{projectId}</li> })}
-            </ul>);
-
-        const mentoringList =
-            (<ul>
-                {mentoring.map((student) => {
-                    return <li>{student}</li> })}
-            </ul>);
+        const skillList = skills.map(el => <p style={{marginBottom: "0"}}>{el}</p>);
 
         return (
             <Grid columns={12}>
@@ -121,7 +127,7 @@ export default class UserPage extends Component {
                     heading3={"Mentoring"}
 
                     content1={skillList}
-                    content2={projectList}
+                    content2={this.state.projectItems.split(", ").map(el => <p style={{marginBottom: "0"}}>{el}</p>)}
                     content3={memberNames.split(", ").map(el => <p style={{marginBottom: "0"}}>{el}</p>)}
                 />
                 </Grid.Row>
