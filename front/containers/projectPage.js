@@ -38,6 +38,7 @@ export default class ProjectPage extends Component {
                     memberNamesStr = memberNamesStr.concat(user.name + ", ");
                     count++;
                     if (count === projectObject.members.length) {
+                        console.log(projectObject);
                         this.setState({
                             loaded: true,
                             project: projectObject,
@@ -46,6 +47,11 @@ export default class ProjectPage extends Component {
                     }
                 })
             }
+            this.setState({
+                loaded: true,
+                project: projectObject,
+                memberNames: memberNamesStr
+            })
         })
     }
 
