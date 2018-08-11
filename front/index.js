@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import LoginPage from './containers/loginPage';
 import userPage from './containers/userPage';
 
+import './css/index.sass';
+
 
 class Index extends Component {
     constructor(props) {
