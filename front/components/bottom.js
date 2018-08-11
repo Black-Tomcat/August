@@ -5,7 +5,7 @@ import { Header } from 'semantic-ui-react'
 export default class Bottom extends Component {
     render(){
         return(
-            <Grid columns={3} divided>
+            <Grid textAlign = 'center' columns={3} divided>
                 <Grid.Row>
                     <Grid.Column>
                         <Header as ='h1'>{this.props.heading1}</Header>
