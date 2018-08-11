@@ -35,6 +35,7 @@ class Index extends Component {
             loggedIn: true,
             pageInfo: userObject,
             user: userObject.name
+            viewing: "user",
         });
     };
 
@@ -48,15 +49,18 @@ class Index extends Component {
         } else if (name === "Marketplace") {
             backendClient.searchProjects("", projects => {
                 this.setState(prevState => ({
-                    all: [...prevState.all, ...projects],
+                    projects: projects,
                     projectsLoaded: true
                 }))
             });
             backendClient.searchUsers("", users => {
                 this.setState(prevState => ({
-                    all: [...prevState.all, ...users],
+                    users: users,
                     usersLoaded: true
                 }))
+            });
+            this.setState({
+                viewing: "marketplace"
             })
         }
     };
@@ -70,18 +74,41 @@ class Index extends Component {
     };
 
     render() {
-        const {loggedIn, viewing, pageInfo, usersLoaded, projectsLoaded, all} = this.state;
+        const {loggedIn, viewing, pageInfo, usersLoaded, projectsLoaded, users, projects} = this.state;
+
+
 
         return (
             <div>
-                {loggedIn && <NavBar
-                    updatePage={this.updateViewingFromNav}
-                />}
-                {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
-                {loggedIn && viewing === "user" && <UserPage user={pageInfo}/>}
-                {loggedIn && viewing === "project" && <ProjectPage project={pageInfo}/>}
-                {loggedIn && usersLoaded && projectsLoaded && viewing === "marketplace" && <MarketPage tags={all}/>}
-                <LandingPitch/>
+                {loggedIn &&
+                    <NavBar
+                        updatePage={this.updateViewingFromNav}
+                    />
+                }
+                {!loggedIn &&
+                    <div>
+                        <LoginPage
+                            onSubmit={this.onLogin}
+                        />
+                         <LandingPitch/>
+                    </div>
+                }
+                {loggedIn && viewing === "user" &&
+                    <UserPage
+                        user={pageInfo}
+                    />
+                }
+                {loggedIn && viewing === "project" &&
+                    <ProjectPage
+                        project={pageInfo}
+                    />
+                }
+                {loggedIn && usersLoaded && projectsLoaded && viewing === "marketplace" &&
+                    <MarketPage
+                        users={users}
+                        projects={projects}
+                    />
+                }
             </div>
         )
     }
