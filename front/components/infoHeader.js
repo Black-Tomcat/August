@@ -10,7 +10,7 @@ export default class InfoHeader extends Component{
             <div>
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={3}>
-                        <Image circular src='http://flatable.phoenixcoded.net/default/assets/images/user.png' />
+                        <Image circular src={this.props.profile} />
                     </Grid.Column>
                     <Grid.Column width={6}>
                         <Header as='h1'>

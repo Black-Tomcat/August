@@ -9,7 +9,7 @@ import Bottom from "../components/bottom";
 export default class UserPage extends Component {
 
     render() {
-        const {skills, degree, lookingFor, projects, mentoring, name, bio} = this.props.user;
+        const {skills, degree, lookingFor, projects, mentoring, name, bio, profile} = this.props.user;
 
         if (this.props.user === null) {
             return <Loader/>
@@ -45,6 +45,7 @@ export default class UserPage extends Component {
             <div>
                 <InfoHeader
                     heading={name}
+                    profile={profile}
                     headingTags={hTagComponents}
                 />
                 <Description
