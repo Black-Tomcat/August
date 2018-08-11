@@ -47,9 +47,6 @@ export default class App extends Component {
 
         backendClient.addUserToProject(this.props.userID, this.state.objectID, (objectID) => {
             this.setState({
-                currentlyViewing: "user"
-            });
-            this.setState({
                 currentlyViewing: "project"
             })
         })
