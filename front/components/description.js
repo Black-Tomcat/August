@@ -7,10 +7,8 @@ Description extends Component {
     render() {
         const {text} = this.props;
         return [
-            <Grid.Column width={3}/>,
-            <Grid.Column width={6}>
+            <Grid.Column width={12} style={{marginLeft: "0 !important", marginRight: "0 !important"}}>
                 <Container text id="SomeID">
-
                     <Header as='h1'>Description</Header>
                     <Message color='blue'>
                         {text}
