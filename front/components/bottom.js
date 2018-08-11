@@ -20,6 +20,7 @@ export default class Bottom extends Component {
                         <p>{this.props.content3}</p>
                     </Grid.Column>
                 </Grid.Row>
+            </Grid>
         )
     }
 }
