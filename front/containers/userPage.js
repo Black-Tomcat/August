@@ -19,9 +19,9 @@ export default class UserPage extends Component {
         }
     }
 
-    componentDidMount() {
+    updateState = (userID) => {
         let client = new Client();
-        client.getUser(this.props.userID, (user) =>{
+        client.getUser(userID, (user) =>{
             this.setState({
                 loaded: true,
                 user: user,
@@ -30,8 +30,12 @@ export default class UserPage extends Component {
         });
     }
 
-    componentDidUpdate(){
-        this.componentDidMount();
+    componentDidMount() {
+        this.updateState(this.props.userID);
+    }
+
+    componentWillReceiveProps (newProps){
+        this.updateState(newProps.userID);
     }
 
     addMentor = () => {
