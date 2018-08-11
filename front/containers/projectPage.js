@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import Description from '../components/description';
+
 
 export default class ProjectPage extends Component {
     constructor(props) {

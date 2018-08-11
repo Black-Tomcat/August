@@ -14,6 +14,7 @@ class Index extends Component {
             loggedIn: false,
             viewing: "user",
             pageInfo: "Sam",
+
             //
             users: {}
         }
