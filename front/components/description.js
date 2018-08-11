@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Message } from 'semantic-ui-react'
 
 export default class Description extends Component {
     render() {
@@ -7,7 +7,11 @@ export default class Description extends Component {
         return (
             <Container text>
                 <Header as='h1'>Description</Header>
-                <p>{text}</p>
+                <Message color='blue'>
+                    <p>
+                        {text}
+                    </p>
+                </Message>
             </Container>
         )
     }
