@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
+import UserPage from './containers/userPage.js';
 
 import LoginPage from './containers/loginPage';
 import userPage from './containers/userPage';
@@ -39,6 +40,6 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-    <Index/>,
+    <UserPage />,
     document.body
 );
