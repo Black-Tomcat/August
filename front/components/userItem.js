@@ -8,7 +8,7 @@ export default class UserItem extends Component{
         super(props);
         
         this.setState = {
-            loaded: false;
+            loaded: false
         }
     }
 
@@ -26,7 +26,8 @@ export default class UserItem extends Component{
             <Item>
                 <Loader active={!this.state.loaded} />
                 {
-                loaded && <Item.Image src={this.state.profile} />
+                    loaded && <Item.Image src={this.state.profile}/>
+                }
                 <Item.Content>
                     <Item.Header>{this.state.name}</Item.Header>
                     <Item.Description>{this.state.degree}</Item.Description>

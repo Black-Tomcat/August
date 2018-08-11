@@ -11,6 +11,7 @@ import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
+import MarketPage from "./containers/marketPage";
 
 
 class Index extends Component {
@@ -21,6 +22,10 @@ class Index extends Component {
             viewing: "user",
             pageInfo: null,
             user: null,
+
+            all: [],
+            usersLoaded: false,
+            projectsLoaded: false
         }
     }
 
@@ -33,14 +38,25 @@ class Index extends Component {
     };
 
     updateViewingFromNav = (e, {name}) => {
-        if (name === "My Page") {
-            const backendClient = new BackendClient();
+        const backendClient = new BackendClient();
 
+        if (name === "My Page") {
             backendClient.getUserByName(this.state.user, userObject => {
                 this.updateUser(userObject)
             });
-        } else if (name === "") {
-
+        } else if (name === "Marketplace") {
+            backendClient.searchProjects("", projects => {
+                this.setState(prevState => ({
+                    all: [...prevState.all, ...projects],
+                    projectsLoaded: true
+                }))
+            });
+            backendClient.searchUsers("", users => {
+                this.setState(prevState => ({
+                    all: [...prevState.all, ...users],
+                    usersLoaded: true
+                }))
+            })
         }
     };
 
@@ -53,7 +69,7 @@ class Index extends Component {
     };
 
     render() {
-        const {loggedIn, viewing, pageInfo} = this.state;
+        const {loggedIn, viewing, pageInfo, usersLoaded, projectsLoaded, all} = this.state;
 
         return (
             <div>
@@ -63,6 +79,7 @@ class Index extends Component {
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
                 {loggedIn && viewing === "user" && <UserPage user={pageInfo}/>}
                 {loggedIn && viewing === "project" && <ProjectPage project={pageInfo}/>}
+                {loggedIn && usersLoaded && projectsLoaded && viewing === "marketplace" && <MarketPage tags={all}/>}
                 <LandingPitch/>
             </div>
         )
