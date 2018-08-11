@@ -8,6 +8,7 @@ import ProjectPage from './containers/projectPage';
 
 import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
+import NavBar from "./components/navbar";
 
 
 class Index extends Component {
@@ -41,6 +42,7 @@ class Index extends Component {
         const {loggedIn, viewing, pageInfo} = this.state;
         return (
             <div>
+                {loggedIn && <NavBar/>}
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
                 {loggedIn && viewing === "user" && <UserPage pageInfo={pageInfo}/>}
                 {loggedIn && viewing === "project" && <ProjectPage pageInfo={pageInfo}/>}

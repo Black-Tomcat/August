@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Container, Header, Message, Grid } from 'semantic-ui-react'
 
 export default class Description extends Component {
+
     render() {
         const {text} = this.props;
         return (

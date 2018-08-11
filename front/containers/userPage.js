@@ -1,14 +1,49 @@
 import React, {Component} from 'react';
 
-import {Grid} from 'semantic-ui-react';
-
 import InfoHeader from '../components/infoHeader.js'
 import Description from "../components/description";
 import Bottom from "../components/bottom";
+import Client from "../client.js"
 
 export default class UserPage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: null,
+            profile: null,
+            bio: null,
+            mentor: false,
+            skills: [],
+            projects: [],
+            mentoring: [],
+            initiated: [],
+            lookingFor: null,
+            degree: null,
+        };
+
+        let userInfo = this.getUserInfo(this.props.userId);
+        this.setState(
+            userInfo,
+        );
+    }
+
+    getUserInfo = (userId) => {
+        let client = new Client();
+        client.getUser(userId, (statusCode, userInfo) => {
+            return userInfo;
+        });
+    };
+
+
     render() {
-        let headingTags = ["Bachelor of Compute", "Looking for a mentor"];
+        let headingTags = [this.state.degree, this.state.lookingFor];
+
+        const skillComponent =
+            (<li>
+                {this.state.skills.map((skill) => {
+                    return <ul>{skill}</ul> })}
+            </li>);
 
         let hTagComponents = headingTags.map((tagText) => {
             return (
@@ -17,36 +52,24 @@ export default class UserPage extends Component {
         });
 
         return (
-            <Grid >
-                <Grid.Row>
-                    <Grid.Column>
-                        <InfoHeader
-                            heading="Name"
-                            headingTags={hTagComponents}
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column>
-                        <Description
-                            text={"This is Patrick. He does code."}
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column>
-                        <Bottom
-                            heading1={"Skills"}
-                            heading2={"Projects"}
-                            heading3={"Mentoring"}
+            <div>
+                <InfoHeader
+                    heading={this.state.name}
+                    headingTags={hTagComponents}
+                />
+                <Description
+                    text={this.state.bio}
+                />
+                <Bottom
+                    heading1={"Skills"}
+                    heading2={"Projects"}
+                    heading3={"Mentoring"}
 
-                            content1={"Code"}
-                            content2={"Market Place"}
-                            content3={"A Student"}
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+                    content1={"Code"}
+                    content2={"Market Place"}
+                    content3={"A Student"}
+                />
+            </div>
         )
     }
 }
