@@ -26,7 +26,7 @@ export default class UserPage extends Component {
     }
 
     componentDidMount() {
-        let userInfo = this.getUserInfo(this.props.userId);
+        let userInfo = this.getUserInfo(this.props.userID);
         this.setState(
             userInfo,
         );
@@ -45,13 +45,13 @@ export default class UserPage extends Component {
 
         const skillComponent =
             (<li>
-                {this.state.skills.map((skill) => {
-                    return <ul>{skill}</ul> })}
+                {this.state.skills.map((skill, i) => {
+                    return <ul key={"skill_" + i}>{skill}</ul> })}
             </li>);
 
-        let hTagComponents = headingTags.map((tagText) => {
+        let hTagComponents = headingTags.map((tagText, i) => {
             return (
-                <p>{tagText}</p>
+                <p key={"heading_" + i}>{tagText}</p>
             )
         });
 

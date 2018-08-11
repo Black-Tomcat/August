@@ -37,7 +37,7 @@ export default class BackendClient{
     }
 
     getUserByName(name, callback){
-        fetch('https://' + url + ':3000/users?name=' + name).then((res) => res.json()).then((res) => {
+        fetch('http://' + url + ':3000/users?name=' + name).then((res) => res.json()).then((res) => {
             callback(res[0]);
         });
     }
@@ -45,7 +45,7 @@ export default class BackendClient{
     searchUsers(query, callback){
         let queryString = Object.entries(query).map((pair) => pair[0] + "=" + pair[1]).join("&");
 
-        fetch('https://' + url + ':3000/users?' + queryString).then((res) => res.json()).then((res) => {
+        fetch('http://' + url + ':3000/users?' + queryString).then((res) => res.json()).then((res) => {
             callback(res);
         });
     }
@@ -53,7 +53,7 @@ export default class BackendClient{
     searchProjects(query, callback){
         let queryString = Object.entries(query).map((pair) => pair[0] + "=" + pair[1]).join("&");
 
-        fetch('https://' + url + ':3000/projects?' + queryString).then((res) => res.json()).then((res) => {
+        fetch('http://' + url + ':3000/projects?' + queryString).then((res) => res.json()).then((res) => {
             callback(res);
         });
     }
