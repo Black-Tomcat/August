@@ -6,6 +6,7 @@ import LoginPage from './containers/loginPage';
 import userPage from './containers/userPage';
 
 import './css/index.sass';
+import 'semantic-ui-css/semantic.min.css';
 
 
 class Index extends Component {
@@ -15,6 +16,7 @@ class Index extends Component {
             loggedIn: false,
             viewing: "user",
             pageInfo: "Sam",
+
             //
             users: {}
         }
@@ -39,6 +41,6 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-    <UserPage />,
+    <Index />,
     document.body
 );
