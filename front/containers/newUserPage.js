@@ -34,7 +34,7 @@ export default class NewUserPage extends Component{
                 <Form.Input label="Username" name="username" onChange={this.handleChange} />
                 <Form.Input type="password" label="Password" name="password" onChange={this.handleChange} />
                 <Form.Input label="Degree" name="degree" onChange={this.handleChange} />
-                <Form.Input label="Profile" name="profile" onChange={this.handleChange} />
+                <Form.Input label="Profile Image URL" name="profile" onChange={this.handleChange} />
                 <Form.Input label="Looking For" name="looking" onChange={this.handleChange} />
                 <Form.TextArea label="bio" placeholder="Tell us a little bit about yourself" name="bio" onChange={this.handleChange} />
                 <Form.TextArea label="skills" name="skills" onChange={this.handleChange} />
