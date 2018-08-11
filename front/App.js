@@ -42,6 +42,19 @@ export default class App extends Component {
         });
     };
 
+    joinProject = () => {
+        const backendClient = new BackendClient();
+
+        backendClient.addUserToProject(this.props.userID, this.state.objectID, (objectID) => {
+            this.setState({
+                currentlyViewing: "user"
+            });
+            this.setState({
+                currentlyViewing: "project"
+            })
+        })
+    };
+
     render() {
         const {currentlyViewing, objectID} = this.state;
 
@@ -60,6 +73,7 @@ export default class App extends Component {
                 {currentlyViewing === "project" &&
                 <ProjectPage
                     projectID={objectID}
+                    joinProject={this.joinProject}
                     transitionPage={this.updateCurrentPage}
                 />
                 }

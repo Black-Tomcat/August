@@ -66,7 +66,7 @@ export default class ProjectPage extends Component {
                             headingTags={tags}
                         />
                         <Grid.Column>
-                            <Button primary>
+                            <Button primary onClick={this.props.joinProject}>
                                 Join Project
                             </Button>
                         </Grid.Column>
