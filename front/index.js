@@ -19,6 +19,7 @@ class Index extends Component {
             loggedIn: false,
             viewing: "user",
             pageInfo: "5b6e84f3d9accd808af40073",
+            user: null,
 
             //
             users: {}
@@ -29,7 +30,7 @@ class Index extends Component {
         if (page === "user" && pageInfo === "me") {
             const backendClient = new BackendClient();
 
-            backendClient.getUserByName(pageInfo => {
+            backendClient.getUserByName(this.state.user, pageInfo => {
                 this.setState({
                     viewing: page,
                     pageInfo: pageInfo
