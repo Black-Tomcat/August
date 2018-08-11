@@ -28,9 +28,9 @@ export default class LoginPage extends Component {
 
     usernameChange = (event, data) => {
         this.username = data.value;
-    }
+    };
 
     submitted = () => {
         this.props.onSubmit(this.username);
-    }
+    };
 }

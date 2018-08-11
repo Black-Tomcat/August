@@ -8,7 +8,7 @@ export default class InfoHeader extends Component{
 
         return (
             <div>
-                <Grid>
+                <Grid verticalAlign='middle'>
                     <Grid.Column width={3}>
                         <Image circular src='http://flatable.phoenixcoded.net/default/assets/images/user.png' />
                     </Grid.Column>
