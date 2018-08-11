@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import UserPage from './containers/userPage.js';
 
 import LoginPage from './containers/loginPage';
-import userPage from './containers/userPage';
+import ProjectPage from './containers/projectPage';
 
 import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
@@ -28,13 +28,20 @@ class Index extends Component {
         })
     }
 
+    onLogin = (username) => {
+        this.setState({
+            loggedIn: true,
+            user: username
+        });
+    }
+
     render() {
         const {loggedIn, viewing, pageInfo} = this.state;
         return (
             <div>
-                {!loggedIn && <LoginPage/>}
-                {loggedIn && viewing === "user" && <userPage pageInfo={pageInfo}/>}
-                {loggedIn && viewing === "project" && <projectPage pageInfo={pageInfo}/>}
+                {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
+                {loggedIn && viewing === "user" && <UserPage pageInfo={pageInfo}/>}
+                {loggedIn && viewing === "project" && <ProjectPage pageInfo={pageInfo}/>}
             </div>
         )
     }
