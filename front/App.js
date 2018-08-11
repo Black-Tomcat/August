@@ -32,7 +32,7 @@ export default class App extends Component {
     updateCurrentPage = (nextPage, objectID) => {
         let payload = objectID;
         if (objectID === "me") {
-            payload = (' ' + this.props.objectID).slice(1);
+            payload = (' ' + this.props.userID).slice(1);
         }
 
         this.setState({

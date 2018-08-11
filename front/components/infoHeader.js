@@ -7,10 +7,10 @@ export default class InfoHeader extends Component{
         const {heading, headingTags} = this.props;
 
         return (
-            <div>
+            <div style={{backgroundColor: "#ffffff", padding: "8px 4px 8px 4px"}}>
                 <Grid verticalAlign='middle'>
-                    <Grid.Column width={3}>
-                        <Image circular src={this.props.profile} />
+                    <Grid.Column width={3} textAlign="center">
+                        <Image circular src={this.props.profile} size="small" style={{boxShadow: "0 1px 4px 3px #d4d4d5 ", left: "24.5px"}}/>
                     </Grid.Column>
                     <Grid.Column width={6}>
                         <Header as='h1'>
