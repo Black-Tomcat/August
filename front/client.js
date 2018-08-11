@@ -41,4 +41,20 @@ export default class BackendClient{
             callback(res);
         });
     }
+
+    searchUsers(query, callback){
+        let queryString = Object.entries(query).map((pair) => pair[0] + "=" + pair[1]).join("&");
+
+        fetch('https://' + url + ':3000/users?' + queryString).then((res) => res.json()).then((res) => {
+            callback(res);
+        });
+    }
+
+    searchProjects(query, callback){
+        let queryString = Object.entries(query).map((pair) => pair[0] + "=" + pair[1]).join("&");
+
+        fetch('https://' + url + ':3000/projects?' + queryString).then((res) => res.json()).then((res) => {
+            callback(res);
+        });
+    }
 }
