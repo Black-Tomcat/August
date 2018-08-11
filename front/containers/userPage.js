@@ -34,8 +34,8 @@ export default class UserPage extends Component {
 
     getUserInfo = (userId) => {
         let client = new Client();
-        return client.getUser(userId, (statusCode, userInfo) => {
-            return userInfo;
+        return client.getUser(userId, (userInfo) => {
+            this.setState(userInfo);
         });
     };
 
