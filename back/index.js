@@ -86,6 +86,31 @@ app.get("/projects/:projectId", (req, res) => {
   }
 });
 
+app.post("/projects/:projectId/members", (req, res) => {
+  const id = req.params.projectId;
+  if(id.length != 24){
+    res.statusCode = 400;
+    res.send("Nice try, give me a proper id");
+  }
+  else{
+    client.connect(url, (err, db) => {
+      const dbo = db.db("august");
+      dbo.collection("projects").findOne({"_id": ObjectId(id)}, (err, dbres) => {
+        if(err) throw err;
+        if(dbres.members){
+          dbres.members.push(req.body.id);
+        }
+        else{
+          dbres.members = [req.body.id];
+        }
+        dbo.collection("projects").update({"_id": ObjectId(id)}, dbres, (err, dbres) => {
+          res.send(req.body.id);
+          db.close(); 
+        });
+      });
+    });
+  }
+});
 app.get("/projects", (req, res) => {
   const query = req.query;
   client.connect(url, (err, db) => {
