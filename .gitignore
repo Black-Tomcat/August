@@ -1,4 +1,5 @@
 node_modules
+back/mongo
 front/dist
 .idea
 yarn.lock
