@@ -12,6 +12,19 @@ export default class BackendClient{
         });
     }
 
+    addUserToProject(userID,projectID, callback) {
+        fetch('http://' + url + ':3000/projects/' + projectID + '/members',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: userID   
+            })}).then((res) => res.text()).then((res) => {
+            callback(res);
+        });
+    }
+
     addMentor(user, mentor, callback) {
         fetch('http://' + url + ':3000/users/' + user + '/mentors',{
             method: 'POST',
