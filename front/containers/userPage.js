@@ -30,6 +30,7 @@ export default class UserPage extends Component {
                     memberNamesStr = memberNamesStr.concat(user.name + ", ");
                     count++;
                     if (count === userObject.mentoring.length) {
+
                         this.setState({
                             loaded: true,
                             user: userObject,
@@ -38,6 +39,11 @@ export default class UserPage extends Component {
                     }
                 })
             }
+            this.setState({
+                loaded: true,
+                user: userObject,
+                memberNames: memberNamesStr
+            })
         })
     }
 
