@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
 import MarketPage from "./containers/marketPage";
+import Banner from "./components/banner";
 
 
 class Index extends Component {
@@ -33,9 +34,8 @@ class Index extends Component {
         console.log(userObject);
         this.setState({
             loggedIn: true,
-            pageInfo: userObject,
-            user: userObject.name
             viewing: "user",
+            pageInfo: userObject
         });
     };
 
@@ -87,6 +87,7 @@ class Index extends Component {
                 }
                 {!loggedIn &&
                     <div>
+                        <Banner/>
                         <LoginPage
                             onSubmit={this.onLogin}
                         />
