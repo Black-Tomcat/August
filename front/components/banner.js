@@ -6,7 +6,7 @@ export default class Banner extends Component {
     render() {
         return (
             <div>
-                <Image src='https://i.imgur.com/53gFARo.png' size='small' centered/>
+                <Image src='https://i.imgur.com/53gFARo.png' size='medium' centered/>
             </div>
         )
     }
