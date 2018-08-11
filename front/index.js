@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
-import UserPage from './containers/userPage.js';
 
 import LoginPage from './containers/loginPage';
 import UserPage from './containers/userPage';

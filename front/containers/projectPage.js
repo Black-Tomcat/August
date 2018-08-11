@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Header from '../components/header';
+import Header from '../components/infoHeader';
 import Description from '../components/description';
 import Bottom from '../components/bottom';
 
@@ -30,13 +30,13 @@ export default class ProjectPage extends Component {
                     text={description}
                 />
                 <Bottom
-                    heading1={}
-                    heading2={}
-                    heading3={}
+                    heading1={"Members"}
+                    heading2={"Skills"}
+                    heading3={"Progress"}
 
-                    content1={}
-                    content2={}
-                    content3={}
+                    content1={members}
+                    content2={tags}
+                    content3={progress}
                 />
             </div>
         )
