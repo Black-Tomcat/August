@@ -30,7 +30,7 @@ export default class UserPage extends Component {
         });
     }
     componentWillReceiveProps(){
-        componentDidMount();
+        this.componentDidMount();
     }
 
     addMentor = () => {
