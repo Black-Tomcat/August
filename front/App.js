@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
 import MarketPage from "./containers/marketPage";
+import NewProjectPage from './containers/newProjectPage';
 import Banner from "./components/banner";
 
 
@@ -32,7 +33,7 @@ export default class App extends Component {
     updateCurrentPage = (nextPage, objectID) => {
         let payload = objectID;
         if (objectID === "me") {
-            payload = (' ' + this.props.objectID).slice(1);
+            payload = (' ' + this.props.userID).slice(1);
         }
 
         this.setState({
@@ -65,6 +66,13 @@ export default class App extends Component {
                 {currentlyViewing === "marketplace" &&
                 <MarketPage
                     transitionPage={this.updateCurrentPage}
+                />
+                }
+
+                {currentlyViewing === "newProject" &&
+                <NewProjectPage
+                    transitionPage={this.updateCurrentPage}
+                    userId={objectID}
                 />
                 }
             </div>

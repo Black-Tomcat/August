@@ -11,7 +11,7 @@ export default class NavBar extends Component {
     }
 
     updatePage = (e, {name}) => {
-        this.props.transitionPage(name, "me")
+        this.props.transitionPage(name, "me");
     };
 
     render(){
@@ -37,6 +37,14 @@ export default class NavBar extends Component {
              >
                  <Input icon='search' placeholder = 'Search...'/>
              </Menu.Item>
+            <Menu.Menu position='right' >
+                 <Menu.Item
+                     name="newProject"
+                     onClick={this.updatePage}
+                 >
+                     Add Project
+                 </Menu.Item>
+            </Menu.Menu>
 
          </Menu>
         )
