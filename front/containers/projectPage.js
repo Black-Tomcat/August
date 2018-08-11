@@ -55,7 +55,7 @@ export default class ProjectPage extends Component {
         }
         else {
             const { loaded, memberNames } = this.state;
-            const { name, client, description, pay, members, progress, tags, img } = this.state.project;
+            const { name, description, progress, tags, img } = this.state.project;
 
             return (
                 <Grid columns={12}>
