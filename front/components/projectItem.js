@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Item, Image, Loader} from 'semantic-ui-react';
-import Client form './client';
+import Client from './client';
 
 
-export default class ProjectItem extends Component{
-    contructor(props){
+export default class ProjectItem extends Component {
+    constructor(props){
         super(props);
 
         this.setState = {
-            loaded: false;
+            loaded: false
         }
     }
 
@@ -21,15 +21,17 @@ export default class ProjectItem extends Component{
     }
 
     render(){
-        return 
+        return (
             <Item>
                 <Loader active={!this.state.loaded} />
                 {
                 loaded && <Item.Image src={this.state.img} />
+                }
                 <Item.Content>
                     <Item.Header>{this.state.name}</Item.Header>
-                    <Item.Description>{this.state.description.substring(0, 30)}</Item.description
+                    <Item.Description>{this.state.description.substring(0, 30)}</Item.Description>
                 </Item.Content>
             </Item>
+        )
     }
 }
