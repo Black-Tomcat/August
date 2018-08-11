@@ -20,14 +20,25 @@ export default class UserPage extends Component {
     }
 
     updateState = (userID) => {
-        let client = new Client();
-        client.getUser(userID, (user) =>{
-            this.setState({
-                loaded: true,
-                user: user,
-                isYourMentor: user.mentoring.includes(this.props.meID)
-            });
-        });
+        let backendClient = new Client();
+
+        backendClient.getUser(userID, userObject => {
+            let memberNamesStr = "";
+            let count = 0;
+            for (let member of userObject.mentoring) {
+                backendClient.getUser(member, (user) => {
+                    memberNamesStr = memberNamesStr.concat(user.name + ", ");
+                    count++;
+                    if (count === userObject.mentoring.length) {
+                        this.setState({
+                            loaded: true,
+                            user: userObject,
+                            memberNames: memberNamesStr
+                        })
+                    }
+                })
+            }
+        })
     }
 
     componentDidMount() {
@@ -53,6 +64,7 @@ export default class UserPage extends Component {
             return <Loader/>
         }
 
+        const {memberNames} = this.state;
         const {skills, degree, lookingFor, projects, mentoring, name, bio, profile} = this.state.user;
 
         let headingTags = [degree, lookingFor];
@@ -108,7 +120,7 @@ export default class UserPage extends Component {
 
                     content1={skillList}
                     content2={projectList}
-                    content3={mentoringList}
+                    content3={memberNames.split(", ").map(el => <p>{el}</p>)}
                 />
                 </Grid.Row>
             </Grid>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import { Loader , Grid} from 'semantic-ui-react';
+import { Loader, Grid, Button} from 'semantic-ui-react';
 
 import InfoHeader from '../components/infoHeader';
 import Description from '../components/description';
@@ -35,9 +35,9 @@ export default class ProjectPage extends Component {
             let count = 0;
             for (let member of projectObject.members) {
                 backendClient.getUser(member, (user) => {
-                    memberNamesStr = memberNamesStr.concat(user.name + " ")
-                    count++
-                    if (count == projectObject.members.length) {
+                    memberNamesStr = memberNamesStr.concat(user.name + ", ");
+                    count++;
+                    if (count === projectObject.members.length) {
                         this.setState({
                             loaded: true,
                             project: projectObject,
@@ -58,37 +58,39 @@ export default class ProjectPage extends Component {
             const { name, client, description, pay, members, progress, tags, img } = this.state.project;
 
             return (
-                <div>
-                    { this.state.loaded && !error &&
-                    <Grid>
-                        <Grid.Row>
+                <Grid columns={12}>
+                    <Grid.Row className="WhiteyClass margins">
                         <InfoHeader
                             heading={name}
                             profile={img}
                             headingTags={tags}
                         />
-                        </Grid.Row>
+                        <Grid.Column>
+                            <Button primary>
+                                Join Project
+                            </Button>
+                        </Grid.Column>
+                    </Grid.Row>
 
-                        <Grid.Row>
-                        <Description
-                            text={description}
-                        />
-                        </Grid.Row>
+                    <Grid.Row className="WhiteyClass margins">
+                    <Description
+                        text={description}
+                    />
+                    </Grid.Row>
 
-                        <Grid.Row>
-                        <Bottom
-                            heading1={"Members"}
-                            heading2={"Skills"}
-                            heading3={"Progress"}
+                    <Grid.Row className="WhiteyClass margins">
+                    <Bottom
+                        heading1={"Members"}
+                        heading2={"Skills"}
+                        heading3={"Progress"}
 
-                            content1={memberNames}
-                            content2={tags}
-                            content3={progress}
-                        />
-                        </Grid.Row>
-                    </Grid>
-                    }
-                </div>
+                        content1={memberNames.split(", ").map(el => <p>{el}</p>)}
+                        content2={tags.map(el => <p>{el}</p>)}
+                        content3={progress}
+                    />
+                    </Grid.Row>
+                </Grid>
+
             )
         }
     }
