@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import { Loader } from 'semantic-ui-react';
+import { Loader , Grid} from 'semantic-ui-react';
 
-import Header from '../components/infoHeader';
+import InfoHeader from '../components/infoHeader';
 import Description from '../components/description';
 import Bottom from '../components/bottom';
 
@@ -47,8 +47,6 @@ export default class ProjectPage extends Component {
                 })
             }
         })
-
-
     }
 
     render() {
@@ -61,29 +59,38 @@ export default class ProjectPage extends Component {
 
             return (
                 <div>
-                    {this.state.loaded &&
-                        <div>
-                            <Header
-                                heading={name}
-                                profile={img}
-                                headingTags={tags}
-                            />
-                            <Description
-                                text={description}
-                            />
-                            <Bottom
-                                heading1={"Members"}
-                                heading2={"Skills"}
-                                heading3={"Progress"}
+                    { this.state.loaded && !error &&
+                    <Grid>
+                        <Grid.Row>
+                        <InfoHeader
+                            heading={name}
+                            profile={img}
+                            headingTags={tags}
+                        />
+                        </Grid.Row>
 
-                                content1={memberNames}
-                                content2={tags}
-                                content3={progress}
-                            />
-                        </div>
+                        <Grid.Row>
+                        <Description
+                            text={description}
+                        />
+                        </Grid.Row>
+
+                        <Grid.Row>
+                        <Bottom
+                            heading1={"Members"}
+                            heading2={"Skills"}
+                            heading3={"Progress"}
+
+                            content1={memberNames}
+                            content2={tags}
+                            content3={progress}
+                        />
+                        </Grid.Row>
+                    </Grid>
                     }
                 </div>
             )
         }
     }
+
 }
