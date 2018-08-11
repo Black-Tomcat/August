@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import UserPage from './containers/userPage.js';
 
 import LoginPage from './containers/loginPage';
+import UserPage from './containers/userPage';
 import ProjectPage from './containers/projectPage';
+
 
 import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
@@ -28,6 +30,7 @@ class Index extends Component {
         })
     }
 
+
     onLogin = (username) => {
         this.setState({
             loggedIn: true,
@@ -35,7 +38,6 @@ class Index extends Component {
         });
     }
 
-// ...>{this.props.heading1}</...
     render() {
         const {loggedIn, viewing, pageInfo} = this.state;
         return (
@@ -50,5 +52,5 @@ class Index extends Component {
 
 ReactDOM.render(
     <Index />,
-    document.body
+    document.getElementById("react-entry")
 );
