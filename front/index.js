@@ -20,36 +20,34 @@ class Index extends Component {
             viewing: "user",
             pageInfo: null,
             user: null,
-
-            //
-            users: {}
         }
     }
+
+    updateUser = (userObject) => {
+        console.log(userObject);
+        this.setState({
+            loggedIn: true,
+            pageInfo: userObject
+        });
+    };
 
     updateViewingFromNav = (e, {name}) => {
         if (name === "My Page") {
             const backendClient = new BackendClient();
 
-            backendClient.getUserByName(this.state.user, pageInfo => {
-                this.setState({
-                    viewing: "user",
-                    pageInfo: pageInfo[0]
-                })
+            backendClient.getUserByName(this.state.user, userObject => {
+                this.updateUser(userObject)
             });
         } else if (name === "") {
 
         }
     };
 
-
     onLogin = (username) => {
         const backendClient = new BackendClient();
 
         backendClient.getUserByName(username, (userObject) => {
-            this.setState({
-                loggedIn: true,
-                user: userObject[0]
-            });
+            this.updateUser(userObject)
         });
     };
 
