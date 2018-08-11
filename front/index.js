@@ -5,6 +5,8 @@ import UserPage from './containers/userPage.js';
 import LoginPage from './containers/loginPage';
 import userPage from './containers/userPage';
 
+import './css/index.sass';
+
 
 class Index extends Component {
     constructor(props) {
