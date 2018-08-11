@@ -7,9 +7,8 @@ export default class ProjectItem extends Component {
         super(props);
     }
 
-    updateLocation = () => {
-        console.log("")
-        this.props.updateLocation("project", this.props.project.name);
+    changePage = () => {
+        this.props.transitionPage("project", this.props.project._id);
     };
 
     render(){
@@ -19,7 +18,7 @@ export default class ProjectItem extends Component {
             <Item>
                 {img !== null && img !== undefined && <Item.Image src={img} />}
                 <Item.Content>
-                    <Item.Header as="a" onClick={this.updateLocation}>{name}</Item.Header>
+                    <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>
                     <Item.Description>{description.substring(0, 30)}</Item.Description>
                 </Item.Content>
             </Item>

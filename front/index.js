@@ -34,20 +34,20 @@ class Index extends Component {
 
         return (
             <div>
-                {
-                    !loggedIn &&
-                    <div>
-                        <Banner/>
-                        <LoginPage
-                            onSubmit={this.onLogin}
-                        />
-                        <LandingPitch/>
-                    </div>
-                } {
-                    loggedIn &&
-                    <App
-                        userID={userID}
+                {!loggedIn &&
+                <div>
+                    <Banner/>
+                    <LoginPage
+                        onSubmit={this.onLogin}
                     />
+                    <LandingPitch/>
+                </div>
+                }
+
+                {loggedIn &&
+                <App
+                    userID={userID}
+                />
                 }
             </div>
         )

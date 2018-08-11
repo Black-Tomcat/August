@@ -9,6 +9,10 @@ export default class UserItem extends Component{
 
     }
 
+    changePage = () => {
+        this.props.transitionPage("user", this.props.user._id)
+    };
+
     render(){
         const {name, degree, profile} = this.props.user;
 
@@ -16,7 +20,7 @@ export default class UserItem extends Component{
             <Item>
                 <Item.Image src={profile}/>
                 <Item.Content>
-                    <Item.Header as="a">{name}</Item.Header>
+                    <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>
                     <Item.Description>{degree}</Item.Description>
                 </Item.Content>
             </Item>

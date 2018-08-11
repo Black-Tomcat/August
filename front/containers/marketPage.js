@@ -15,8 +15,8 @@ export default class MarketPage extends Component {
     }
 
     render() {
-        const userArray = this.props.users.map(el => <UserItem user={el}/>);
-        const projectArray = this.props.projects.map(el => <ProjectItem updateLocation={this.props.changePageCallback} project={el}/>);
+        const userArray = this.props.users.map(el => <UserItem transitionPage={this.props.transitionPage} user={el}/>);
+        const projectArray = this.props.projects.map(el => <ProjectItem transitionPage={this.props.transitionPage} project={el}/>);
 
         return (
             <Grid columns={2}>
