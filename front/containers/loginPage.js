@@ -33,8 +33,8 @@ export default class LoginPage extends Component {
                             <Input type='text' placeholder="Username" onChange={this.usernameChange} />
                             <br />
                             <Input type='password' placeholder="Password" />
-                            <Button type='submit' onClick={this.submitted}>Submit</Button>
-                            <Button onClick={this.registerUser}>Register!</Button>
+                            <Button type='submit' onClick={this.submitted}>Log In</Button>
+                            <Button onClick={this.registerUser}>Register</Button>
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
