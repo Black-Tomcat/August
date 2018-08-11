@@ -53,6 +53,7 @@ export default class App extends Component {
                 <UserPage
                     userID={objectID}
                     transitionPage={this.updateCurrentPage}
+                    meID={this.props.userID}
                 />
                 }
 
