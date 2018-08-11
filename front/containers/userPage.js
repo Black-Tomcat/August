@@ -1,28 +1,24 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import Header from '../components/header.js'
 
-
-export default class userPage extends Component {
-    static PropTypes = {
-        user: PropTypes.object.required
-    };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-
-        }
-    }
-
+export default class UserPage extends Component {
     render() {
-        const {user} = this.props;
-        const {} = this.state;
+        let headingTags = ["Bachelor of Compute", "Looking for a mentor"];
+
+        let hTagComponents = headingTags.map((tagText) => {
+            return (
+                <p>{tagText}</p>
+            )
+        });
 
         return (
             <div>
-
+                <Header
+                    heading="Name"
+                    headingTags={hTagComponents}
+                />
             </div>
-        );
+        )
     }
 }
+
