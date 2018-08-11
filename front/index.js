@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import LoginPage from './containers/loginPage';
 import UserPage from './containers/userPage';
 import ProjectPage from './containers/projectPage';
+import LandingPitch from './components/landingPitch.js';
 
 
 import './css/index.sass';
@@ -62,6 +63,7 @@ class Index extends Component {
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
                 {loggedIn && viewing === "user" && <UserPage user={pageInfo}/>}
                 {loggedIn && viewing === "project" && <ProjectPage project={pageInfo}/>}
+                <LandingPitch/>
             </div>
         )
     }

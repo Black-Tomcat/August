@@ -3,6 +3,7 @@ import {Input, Button, Grid} from 'semantic-ui-react';
 import NewUserPage from './newUserPage'
 
 
+
 export default class LoginPage extends Component {
     constructor(props){
         super(props);
