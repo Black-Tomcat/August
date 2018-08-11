@@ -29,6 +29,9 @@ export default class UserPage extends Component {
             });
         });
     }
+    componentWillReceiveProps(){
+        componentDidMount();
+    }
 
     addMentor = () => {
         let client = new Client();                
