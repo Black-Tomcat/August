@@ -109,6 +109,14 @@ export default class NavBar extends Component {
                  value={this.state.value}
                  {...this.props}
              />
+            <Menu.Menu position='right' >
+                 <Menu.Item
+                     name="newProject"
+                     onClick={this.updatePage}
+                 >
+                     Add Project
+                 </Menu.Item>
+            </Menu.Menu>
 
          </Menu>
         )
