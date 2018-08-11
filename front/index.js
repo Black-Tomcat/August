@@ -65,6 +65,10 @@ class Index extends Component {
         }
     };
 
+    updateLocation(nextPage, newItem) {
+        console.log(nextPage, newItem)
+    }
+
     onLogin = (username) => {
         const backendClient = new BackendClient();
 
@@ -108,6 +112,7 @@ class Index extends Component {
                     <MarketPage
                         users={users}
                         projects={projects}
+                        changePageCallback={this.updateLocation}
                     />
                 }
             </div>

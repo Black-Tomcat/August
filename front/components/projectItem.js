@@ -7,6 +7,11 @@ export default class ProjectItem extends Component {
         super(props);
     }
 
+    updateLocation = () => {
+        console.log("")
+        this.props.updateLocation("project", this.props.project.name);
+    };
+
     render(){
         const {img, name, description} = this.props.project;
 
@@ -14,7 +19,7 @@ export default class ProjectItem extends Component {
             <Item>
                 {img !== null && img !== undefined && <Item.Image src={img} />}
                 <Item.Content>
-                    <Item.Header>{name}</Item.Header>
+                    <Item.Header as="a" onClick={this.updateLocation}>{name}</Item.Header>
                     <Item.Description>{description.substring(0, 30)}</Item.Description>
                 </Item.Content>
             </Item>
