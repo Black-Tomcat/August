@@ -6,27 +6,36 @@ import {Loader} from 'semantic-ui-react';
 import InfoHeader from '../components/infoHeader.js'
 import Description from "../components/description";
 import Bottom from "../components/bottom";
+import Client from '../client'
 
 export default class UserPage extends Component {
-    static PropTypes = {
-        userID: PropTypes.string.required
-    };
 
     constructor(props) {
         super(props);
 
         this.state = {
             loaded: false,
-            userObject: null
+            user: null
         }
     }
 
-    render() {
-        const {skills, degree, lookingFor, projects, mentoring, name, bio, profile} = this.props.user;
+    componentDidMount() {
+        let client = new Client();
+        client.getUser(this.props.userID, (user) =>{
+            this.setState({
+                loaded: true,
+                user: user
+            });
+        });
+    }
 
-        if (this.props.user === null) {
+    render() {
+
+        if (!this.state.loaded) {
             return <Loader/>
         }
+
+        const {skills, degree, lookingFor, projects, mentoring, name, bio, profile} = this.state.user;
 
         let headingTags = [degree, lookingFor];
 

@@ -38,40 +38,39 @@ export default class ProjectPage extends Component {
         if (!this.state.loaded) {
             return <Loader/>
         }
-
-        const {name, client, description, pay, members, progress, tags} = this.state.project;
-        const {} = this.state;
-
-        return (
-            <div>
-                { loaded && !error &&
+        else {
+            const {name, client, description, pay, members, progress, tags} = this.state.project;
+            return (
                 <div>
-                    <Header
-                        heading={name}
-                        headingTags={tags}
-                    />
-                    <Description
-                        text={description}
-                    />
-                    <Bottom
-                        heading1={"Members"}
-                        heading2={"Skills"}
-                        heading3={"Progress"}
+                    { loaded && !error &&
+                    <div>
+                        <Header
+                            heading={name}
+                            headingTags={tags}
+                        />
+                        <Description
+                            text={description}
+                        />
+                        <Bottom
+                            heading1={"Members"}
+                            heading2={"Skills"}
+                            heading3={"Progress"}
 
-                        content1={"dank"}
-                        content2={tags}
-                        content3={progress}
-                    />
+                            content1={"dank"}
+                            content2={tags}
+                            content3={progress}
+                        />
+                    </div>
+                    } { loaded && !project &&
+                    <div>
+                        There was an error getting the project requested.
+                        {error}
+                    </div>
+                    } {
+                        !loaded && <Loader/>
+                    }
                 </div>
-                } { loaded && !project &&
-                <div>
-                    There was an error getting the project requested.
-                    {error}
-                </div>
-                } {
-                    !loaded && <Loader/>
-                }
-            </div>
-        )
+            )
+        }
     }
 }

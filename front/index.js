@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 
 import LoginPage from './containers/loginPage';
-import UserPage from './containers/userPage';
-import ProjectPage from './containers/projectPage';
 import LandingPitch from './components/landingPitch.js';
 
 
@@ -11,7 +9,7 @@ import './css/index.sass';
 import 'semantic-ui-css/semantic.min.css';
 import NavBar from "./components/navbar";
 import BackendClient from "./client";
-import MarketPage from "./containers/marketPage";
+import App from "./App";
 import Banner from "./components/banner";
 
 
@@ -20,19 +18,19 @@ class Index extends Component {
         super(props);
         this.state = {
             loggedIn: false,
-            username: null
+            userID: null
         }
     }
 
-    onLogin(username) {
+    onLogin = (userID) => {
         this.setState({
             loggedIn: true,
-            username: username
+            userID: userID
         })
     }
 
     render() {
-        const {loggedIn, username} = this.state;
+        const {loggedIn, userID} = this.state;
 
         return (
             <div>
@@ -48,7 +46,7 @@ class Index extends Component {
                 } {
                     loggedIn &&
                     <App
-                        username={username}
+                        userID={userID}
                     />
                 }
             </div>

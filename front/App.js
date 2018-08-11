@@ -15,17 +15,17 @@ import MarketPage from "./containers/marketPage";
 import Banner from "./components/banner";
 
 
-class App extends Component {
+export default class App extends Component {
     static PropTypes = {
-        username: PropTypes.string.required
+        userID: PropTypes.string.required
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            currentlyViewing: "", // marketplace, user, project, ...
-            objectID: "" // ID of an user/project ID.
+            currentlyViewing: "user", // marketplace, user, project, ...
+            objectID: this.props.userID // ID of an user/project ID.
         }
     }
 

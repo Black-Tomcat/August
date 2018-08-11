@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Input, Button, Grid} from 'semantic-ui-react';
 import NewUserPage from './newUserPage'
+import Client from '../client';
 
 
 
@@ -49,6 +50,9 @@ export default class LoginPage extends Component {
     };
 
     submitted = () => {
-        this.props.onSubmit(this.username);
+        let client = new Client();
+        client.getUserByName(this.username, (user) => {
+            this.props.onSubmit(user["_id"]);
+        });
     };
 }
