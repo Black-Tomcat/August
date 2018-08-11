@@ -29,10 +29,15 @@ export default class App extends Component {
         }
     }
 
-    updateCurrentPage(nextPage, objectID) {
+    updateCurrentPage = (nextPage, objectID) => {
+        let payload = objectID;
+        if (objectID === "me") {
+            payload = (' ' + this.props.objectID).slice(1);
+        }
+
         this.setState({
             currentlyViewing: nextPage,
-            objectID: objectID
+            objectID: payload
         })
     }
 

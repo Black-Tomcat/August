@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Item, Image, Loader} from 'semantic-ui-react';
+import {Item, Image, Loader, Card} from 'semantic-ui-react';
 
 
 export default class ProjectItem extends Component {
@@ -15,7 +15,7 @@ export default class ProjectItem extends Component {
         const {img, name, description} = this.props.project;
 
         return (
-            <Item>
+            <Item as={Card}>
                 {img !== null && img !== undefined && <Item.Image src={img} />}
                 <Item.Content>
                     <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>

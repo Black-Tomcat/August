@@ -27,7 +27,7 @@ class Index extends Component {
             loggedIn: true,
             userID: userID
         })
-    }
+    };
 
     render() {
         const {loggedIn, userID} = this.state;

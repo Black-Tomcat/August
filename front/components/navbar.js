@@ -9,26 +9,31 @@ export default class NavBar extends Component {
         }
 
     }
+
+    updatePage = (e, {name}) => {
+        this.props.transitionPage(name, "me")
+    };
+
     render(){
         //todo active states
 
         return(
          <Menu>
              <Menu.Item
-                 name="My Page"
-                 onClick={this.props.updatePage}
+                 name="user"
+                 onClick={this.updatePage}
              >
                  My Page
              </Menu.Item>
              <Menu.Item
-                 name="Marketplace"
-                 onClick={this.props.updatePage}
+                 name="marketplace"
+                 onClick={this.updatePage}
              >
                  Marketplace
              </Menu.Item>
              <Menu.Item
-                 name="Search"
-                 onClick={this.props.updatePage}
+                 name="search"
+                 onClick={this.updatePage}
              >
                  <Input icon='search' placeholder = 'Search...'/>
              </Menu.Item>
