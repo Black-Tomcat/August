@@ -1,11 +1,16 @@
 const express = require('express');
-const client = require('mongodb').MongoClient;
+const mongo = require('mongodb');
+const client = mongo.MongoClient;
+const ObjectId = mongo.ObjectId;
 const app = express();
+const bodyParser = require('body-parser');
 const url = "mongodb://localhost:27017/";
 
+app.use(bodyParser.json());
 
 app.post("/users", (req, res) => {
-  const body = JSON.parse(req.body);
+  console.log(req.body);
+  const body = req.body;
   client.connect(url, (err, db) => {
     const dbo = db.db("august");
     dbo.collection("users").insertOne(body, (err, dbres) => {
@@ -16,15 +21,16 @@ app.post("/users", (req, res) => {
   });
 });
 
-app.get("/users/:userId", (req, res) = {
+app.get("/users/:userId", (req, res) => {
   const id = req.params.userId;
+  console.log(id);
   client.connect(url, (err, db) => {
     const dbo = db.db("august");
-    dbo.collection("users").findOne({"_id": id}, (err, dbres) => {
+    dbo.collection("users").findOne({"_id": ObjectId(id)}, (err, dbres) => {
       if(err) throw err;
       res.send(JSON.stringify(dbres));
       db.close();      
-    }));
+    });
   });
 });
 
@@ -41,7 +47,7 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/projects", (req, res) => {
-  const body = JSON.parse(req.body);
+  const body = req.body;
   client.connect(url, (err, db) => {
     const dbo = db.db("august");
     dbo.collection("projects").insertOne(body, (err, dbres) => {
@@ -51,15 +57,15 @@ app.post("/projects", (req, res) => {
   });
 });
 
-app.get("/projects/:projectId", (req, res) = {
+app.get("/projects/:projectId", (req, res) => {
   const id = req.params.projectId;
   client.connect(url, (err, db) => {
     const dbo = db.db("august");
-    dbo.collection("projects").findOne({"_id": id}, (err, dbres) => {
+    dbo.collection("projects").findOne({"_id": ObjectId(id)}, (err, dbres) => {
       if(err) throw err;
       res.send(JSON.stringify(dbres));
       db.close();      
-    }));
+    });
   });
 });
 
