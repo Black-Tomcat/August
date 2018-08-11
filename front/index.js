@@ -33,6 +33,7 @@ class Index extends Component {
         console.log(userObject);
         this.setState({
             loggedIn: true,
+            viewing: "user",
             pageInfo: userObject
         });
     };
@@ -56,6 +57,9 @@ class Index extends Component {
                     users: users,
                     usersLoaded: true
                 }))
+            });
+            this.setState({
+                viewing: "marketplace"
             })
         }
     };
@@ -71,6 +75,8 @@ class Index extends Component {
     render() {
         const {loggedIn, viewing, pageInfo, usersLoaded, projectsLoaded, users, projects} = this.state;
 
+
+
         return (
             <div>
                 {loggedIn &&
@@ -79,10 +85,12 @@ class Index extends Component {
                     />
                 }
                 {!loggedIn &&
-                    <LoginPage
-                        onSubmit={this.onLogin}
-                    /> &&
-                     <LandingPitch/>
+                    <div>
+                        <LoginPage
+                            onSubmit={this.onLogin}
+                        />
+                         <LandingPitch/>
+                    </div>
                 }
                 {loggedIn && viewing === "user" &&
                     <UserPage
