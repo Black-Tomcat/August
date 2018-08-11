@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 
-export default class userPage extends Componet {
+export default class userPage extends Component {
     static PropTypes = {
         user: PropTypes.object.required
     };
