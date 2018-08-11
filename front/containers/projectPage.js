@@ -40,13 +40,14 @@ export default class ProjectPage extends Component {
         }
         else {
             const { loaded } = this.state;
-            const { name, client, description, pay, members, progress, tags } = this.state.project;
+            const { name, client, description, pay, members, progress, tags, img } = this.state.project;
             return (
                 <div>
                     {this.state.loaded &&
                         <div>
                             <Header
                                 heading={name}
+                                profile={img}
                                 headingTags={tags}
                             />
                             <Description
