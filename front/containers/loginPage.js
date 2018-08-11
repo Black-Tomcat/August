@@ -14,11 +14,11 @@ export default class LoginPage extends Component {
 
     registerUser = () => {
         this.setState({registering: true});
-    }
+    };
 
     newUser = () => {
         this.setState({registering: false});
-    }
+    };
 
     render() {
         if (this.state.registering){
@@ -34,7 +34,7 @@ export default class LoginPage extends Component {
                             <br />
                             <Input type='password' placeholder="Password" />
                             <Button type='submit' onClick={this.submitted}>Submit</Button>
-                            <Button onClick={this.registerUser}>New User? Register!</Button>
+                            <Button onClick={this.registerUser}>Register!</Button>
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
