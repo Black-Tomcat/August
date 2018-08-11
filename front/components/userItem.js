@@ -6,33 +6,19 @@ import Client from '../client'
 export default class UserItem extends Component{
     constructor(props){
         super(props);
-        
-        this.setState = {
-            loaded: false
-        }
-    }
 
-
-    componentDidMount(){
-        let client = new Client();
-        client.getUser(this.props.userId, (userInfo) => {
-            userInfo.loaded = true;
-            this.setState(userInfo);
-        });
     }
 
     render(){
+        const {name, degree, profile} = this.props.user;
+
         return (
             <Item>
-                <Loader active={!this.state.loaded} />
-                {
-                    loaded && <Item.Image src={this.state.profile}/>
-                }
+                <Item.Image src={profile}/>
                 <Item.Content>
-                    <Item.Header>{this.state.name}</Item.Header>
-                    <Item.Description>{this.state.degree}</Item.Description>
-                </Item.Content> 
-                }
+                    <Item.Header as="a">{name}</Item.Header>
+                    <Item.Description>{degree}</Item.Description>
+                </Item.Content>
             </Item>
         );
     }
