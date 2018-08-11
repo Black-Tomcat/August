@@ -9,15 +9,15 @@ export default class Bottom extends Component {
                 <Grid.Row>
                     <Grid.Column>
                         <Header as ='h1'>{this.props.heading1}</Header>
-                        <p>{this.props.content1}</p>
+                        {this.props.content1}
                     </Grid.Column>
                     <Grid.Column>
                         <Header as ='h1'>{this.props.heading2}</Header>
-                        <p>{this.props.content2}</p>
+                        {this.props.content2}
                     </Grid.Column>
                     <Grid.Column>
                         <Header as ='h1'>{this.props.heading3}</Header>
-                        <p>{this.props.content3}</p>
+                        {this.props.content3}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
