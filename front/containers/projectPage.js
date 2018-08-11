@@ -11,17 +11,35 @@ import BackendClient from "../client";
 
 
 export default class ProjectPage extends Component {
+    static PropTypes = {
+        projectID: PropTypes.string.required
+    };
+
     constructor(props) {
         super(props);
+        this.state = {
+            loaded: false,
+            project: null
+        }
     }
 
     componentDidMount() {
+        const backendClient = new BackendClient();
 
+        backendClient.getProject(this.props.projectID, projectObject => {
+            this.setState({
+                loaded: true,
+                project: projectObject
+            })
+        })
     }
 
     render() {
-        const {project} = this.props;
-        const {name, client, description, pay, members, progress, tags} = project;
+        if (!this.state.loaded) {
+            return <Loader/>
+        }
+
+        const {name, client, description, pay, members, progress, tags} = this.state.project;
         const {} = this.state;
 
         return (

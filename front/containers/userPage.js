@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {Loader} from 'semantic-ui-react';
 
@@ -7,6 +8,18 @@ import Description from "../components/description";
 import Bottom from "../components/bottom";
 
 export default class UserPage extends Component {
+    static PropTypes = {
+        userID: PropTypes.string.required
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loaded: false,
+            userObject: null
+        }
+    }
 
     render() {
         const {skills, degree, lookingFor, projects, mentoring, name, bio, profile} = this.props.user;

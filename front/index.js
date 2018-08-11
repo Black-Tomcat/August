@@ -20,99 +20,35 @@ class Index extends Component {
         super(props);
         this.state = {
             loggedIn: false,
-            viewing: "user",
-            pageInfo: null,
-            user: null,
-
-            all: [],
-            usersLoaded: false,
-            projectsLoaded: false
+            username: null
         }
     }
 
-    updateUser = (userObject) => {
-        console.log(userObject);
+    onLogin(username) {
         this.setState({
             loggedIn: true,
-            viewing: "user",
-            pageInfo: userObject
-        });
-    };
-
-    updateViewingFromNav = (e, {name}) => {
-        const backendClient = new BackendClient();
-
-        if (name === "My Page") {
-            backendClient.getUserByName(this.state.user, userObject => {
-                this.updateUser(userObject)
-            });
-        } else if (name === "Marketplace") {
-            backendClient.searchProjects("", projects => {
-                this.setState(prevState => ({
-                    projects: projects,
-                    projectsLoaded: true
-                }))
-            });
-            backendClient.searchUsers("", users => {
-                this.setState(prevState => ({
-                    users: users,
-                    usersLoaded: true
-                }))
-            });
-            this.setState({
-                viewing: "marketplace"
-            })
-        }
-    };
-
-    updateLocation(nextPage, newItem) {
-        console.log(nextPage, newItem)
+            username: username
+        })
     }
 
-    onLogin = (username) => {
-        const backendClient = new BackendClient();
-
-        backendClient.getUserByName(username, (userObject) => {
-            this.updateUser(userObject)
-        });
-    };
-
     render() {
-        const {loggedIn, viewing, pageInfo, usersLoaded, projectsLoaded, users, projects} = this.state;
-
-
+        const {loggedIn, username} = this.state;
 
         return (
             <div>
-                {loggedIn &&
-                    <NavBar
-                        updatePage={this.updateViewingFromNav}
-                    />
-                }
-                {!loggedIn &&
+                {
+                    !loggedIn &&
                     <div>
                         <Banner/>
                         <LoginPage
                             onSubmit={this.onLogin}
                         />
-                         <LandingPitch/>
+                        <LandingPitch/>
                     </div>
-                }
-                {loggedIn && viewing === "user" &&
-                    <UserPage
-                        user={pageInfo}
-                    />
-                }
-                {loggedIn && viewing === "project" &&
-                    <ProjectPage
-                        project={pageInfo}
-                    />
-                }
-                {loggedIn && usersLoaded && projectsLoaded && viewing === "marketplace" &&
-                    <MarketPage
-                        users={users}
-                        projects={projects}
-                        changePageCallback={this.updateLocation}
+                } {
+                    loggedIn &&
+                    <App
+                        username={username}
                     />
                 }
             </div>
