@@ -24,7 +24,7 @@ export default class ProjectPage extends Component {
     }
 
     componentWillReceiveProps(){
-        componentDidMount();
+        this.componentDidMount();
     }
 
     componentDidMount() {
