@@ -75,11 +75,7 @@ export default class UserPage extends Component {
             )
         });
 
-        const skillList =
-            (<ul>
-                {skills.map((skill) => {
-                    return <li>{skill}</li> })}
-            </ul>);
+        const skillList = skills.map(el => <p style={{marginBottom: "0"}}>{el}</p>)
 
         const projectList =
             (<ul>
@@ -120,7 +116,7 @@ export default class UserPage extends Component {
 
                     content1={skillList}
                     content2={projectList}
-                    content3={memberNames.split(", ").map(el => <p>{el}</p>)}
+                    content3={memberNames.split(", ").map(el => <p style={{marginBottom: "0"}}>{el}</p>)}
                 />
                 </Grid.Row>
             </Grid>
