@@ -18,7 +18,7 @@ class Index extends Component {
         this.state = {
             loggedIn: false,
             viewing: "user",
-            pageInfo: "5b6e84f3d9accd808af40073",
+            pageInfo: null,
             user: null,
 
             //
@@ -26,39 +26,44 @@ class Index extends Component {
         }
     }
 
-    updateViewing = (page, pageInfo) => {
-        if (page === "user" && pageInfo === "me") {
+    updateViewingFromNav = (e, {name}) => {
+        if (name === "My Page") {
             const backendClient = new BackendClient();
 
             backendClient.getUserByName(this.state.user, pageInfo => {
                 this.setState({
-                    viewing: page,
-                    pageInfo: pageInfo
+                    viewing: "user",
+                    pageInfo: pageInfo[0]
                 })
             });
+        } else if (name === "") {
+
         }
     };
 
 
     onLogin = (username) => {
-        this.setState({
-            loggedIn: true,
-            user: username
+        const backendClient = new BackendClient();
+
+        backendClient.getUserByName(username, (userObject) => {
+            this.setState({
+                loggedIn: true,
+                user: userObject[0]
+            });
         });
     };
 
     render() {
         const {loggedIn, viewing, pageInfo} = this.state;
-        console.log(pageInfo);
 
         return (
             <div>
                 {loggedIn && <NavBar
-                    updatePage={this.updateViewing}
+                    updatePage={this.updateViewingFromNav}
                 />}
                 {!loggedIn && <LoginPage onSubmit={this.onLogin}/>}
-                {loggedIn && viewing === "user" && <UserPage userID={pageInfo}/>}
-                {loggedIn && viewing === "project" && <ProjectPage projectID={"5b6e85f4964e7c3d17455680"}/>}
+                {loggedIn && viewing === "user" && <UserPage user={pageInfo}/>}
+                {loggedIn && viewing === "project" && <ProjectPage project={pageInfo}/>}
             </div>
         )
     }
