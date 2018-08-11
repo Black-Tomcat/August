@@ -16,19 +16,19 @@ export default class NavBar extends Component {
          <Menu>
              <Menu.Item
                  name="My Page"
-                 onClick={this.props.updatePage("user", "me")}
+                 onClick={this.props.updatePage}
              >
                  My Page
              </Menu.Item>
              <Menu.Item
                  name="Marketplace"
-                 onClick={this.props.updatePage("Marketplace")}
+                 onClick={this.props.updatePage}
              >
                  Marketplace
              </Menu.Item>
              <Menu.Item
                  name="Search"
-                 onClick={this.props.updatePage("Search")}
+                 onClick={this.props.updatePage}
              >
                  <Input icon='search' placeholder = 'Search...'/>
              </Menu.Item>
