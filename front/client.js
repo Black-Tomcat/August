@@ -1,5 +1,5 @@
 
-class BackendClient{
+export default class BackendClient{
     addUser(user, callback) {
         fetch('http://localhost:3000/users',{method: 'POST', body: JSON.stringify(user)}).then((res) => {
             callback(res.status, res.text());
