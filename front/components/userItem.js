@@ -20,7 +20,7 @@ export default class UserItem extends Component {
             {name}
           </Item.Header>
           <Item.Meta>{degree}</Item.Meta>
-          <Item.Description>{bio.substring(0, 30)}</Item.Description>
+          <Item.Description>{bio.substring(0, 100)}</Item.Description>
           <Item.Extra >{"Skills: " + skills.join(", ")}</Item.Extra>
         </Item.Content>
       </Item>

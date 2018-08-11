@@ -19,7 +19,7 @@ export default class ProjectItem extends Component {
                 {img !== null && img !== undefined && <Item.Image src={img} />}
                 <Item.Content>
                     <Item.Header as="a" onClick={this.changePage}>{name}</Item.Header>
-                    <Item.Description>{description.substring(0, 30)}</Item.Description>
+                    <Item.Description>{description.substring(0, 100)}</Item.Description>
                     <Item.Extra >{"Tags: " + tags.join(", ")}</Item.Extra>
                 </Item.Content>
             </Item>
