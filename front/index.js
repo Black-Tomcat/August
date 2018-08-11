@@ -35,6 +35,7 @@ class Index extends Component {
         });
     }
 
+// ...>{this.props.heading1}</...
     render() {
         const {loggedIn, viewing, pageInfo} = this.state;
         return (
