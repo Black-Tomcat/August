@@ -16,7 +16,7 @@ class Index extends Component {
         super(props);
         this.state = {
             loggedIn: false,
-            viewing: "project",
+            viewing: "user",
             pageInfo: "Sam",
 
             //
