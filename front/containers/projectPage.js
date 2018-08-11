@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {Loader} from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 import Header from '../components/infoHeader';
 import Description from '../components/description';
@@ -36,32 +36,33 @@ export default class ProjectPage extends Component {
 
     render() {
         if (!this.state.loaded) {
-            return <Loader/>
+            return <Loader />
         }
         else {
-            const {loaded} = this.state;
-            const {name, client, description, pay, members, progress, tags} = this.state.project;
+            const { loaded } = this.state;
+            const { name, client, description, pay, members, progress, tags, img } = this.state.project;
             return (
                 <div>
-                    { this.state.loaded && !error &&
-                    <div>
-                        <Header
-                            heading={name}
-                            headingTags={tags}
-                        />
-                        <Description
-                            text={description}
-                        />
-                        <Bottom
-                            heading1={"Members"}
-                            heading2={"Skills"}
-                            heading3={"Progress"}
+                    {this.state.loaded &&
+                        <div>
+                            <Header
+                                heading={name}
+                                profile={img}
+                                headingTags={tags}
+                            />
+                            <Description
+                                text={description}
+                            />
+                            <Bottom
+                                heading1={"Members"}
+                                heading2={"Skills"}
+                                heading3={"Progress"}
 
-                            content1={"dank"}
-                            content2={tags}
-                            content3={progress}
-                        />
-                    </div>
+                                content1={"dank"}
+                                content2={tags}
+                                content3={progress}
+                            />
+                        </div>
                     }
                 </div>
             )
