@@ -37,6 +37,7 @@ export default class MarketPage extends Component {
         const projectArray = this.state.projects.map(el => <ProjectItem transitionPage={this.props.transitionPage} project={el}/>);
 
         return (
+            <div style={{margin: "20px 20px 20px 20px"}}>
             <Grid columns={2}>
                 <Grid.Column>
                     <Item.Group relaxed>
@@ -49,6 +50,7 @@ export default class MarketPage extends Component {
                     </Item.Group>
                 </Grid.Column>
             </Grid>
+            </div>
         )
     }
 }

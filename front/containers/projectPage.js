@@ -39,10 +39,11 @@ export default class ProjectPage extends Component {
             return <Loader/>
         }
         else {
+            const {loaded} = this.state;
             const {name, client, description, pay, members, progress, tags} = this.state.project;
             return (
                 <div>
-                    { loaded && !error &&
+                    { this.state.loaded && !error &&
                     <div>
                         <Header
                             heading={name}
@@ -61,13 +62,6 @@ export default class ProjectPage extends Component {
                             content3={progress}
                         />
                     </div>
-                    } { loaded && !project &&
-                    <div>
-                        There was an error getting the project requested.
-                        {error}
-                    </div>
-                    } {
-                        !loaded && <Loader/>
                     }
                 </div>
             )

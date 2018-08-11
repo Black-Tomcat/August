@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Button, Grid} from 'semantic-ui-react';
+import {Input, Button, Grid, Container} from 'semantic-ui-react';
 import NewUserPage from './newUserPage'
 import Client from '../client';
 
@@ -27,16 +27,19 @@ export default class LoginPage extends Component {
             return <NewUserPage onNewUser={this.newUser}/>
         }
         else{
+            const style = {display: "block", margin: "8px"};
             return (
                 <div className="passwordForm">
                     <Grid centered>
                     <Grid.Row columns={1}>
-                        <Grid.Column width={3}>
-                            <Input type='text' placeholder="Username" onChange={this.usernameChange} />
-                            <br />
-                            <Input type='password' placeholder="Password" />
-                            <Button type='submit' onClick={this.submitted}>Log In</Button>
-                            <Button onClick={this.registerUser}>Register</Button>
+                        <Grid.Column width={4}>
+                            <Container textAlign='center'>
+                                <Input type='text' placeholder="Username" onChange={this.usernameChange} style={style}/>
+                                <Input type='password' placeholder="Password" style={style}/>
+
+                                <Button type='submit' onClick={this.submitted}>Log In</Button>
+                                <Button onClick={this.registerUser}>Register</Button>
+                            </Container>
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
